@@ -1,7 +1,13 @@
-exports = {
-  entry: "app/"
+module.exports = {
+  entry: "./app",
   output: {
-    build: "build",
-    filename: "bundle.js"
+    filename: "build/bundle.js"
+  },
+  module: {
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: "babel"
+    }]
   }
 }
