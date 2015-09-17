@@ -7,7 +7,7 @@ export default class TodoList extends React.Component {
       <ul>
         {
           this.props.todos && this.props.todos.map((todo, i) =>
-            <TodoItem key={i} onclick={this.props.todoItemClick(i)} />
+            <TodoItem key={i} onclick={() => this.props.todoItemClick(i)} />
           )
         }
       </ul>
@@ -16,6 +16,9 @@ export default class TodoList extends React.Component {
 }
 
 TodoList.propTypes = {
-  todos: React.PropTypes.array.isRequired,
+  todos: React.PropTypes.arrayOf(React.PropTypes.shape({
+    text: React.PropTypes.string.isRequired,
+    completed: React.PropTypes.bool.isRequired
+  })),
   todoItemClick: React.PropTypes.func.isRequired
 }

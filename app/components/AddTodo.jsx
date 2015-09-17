@@ -11,7 +11,7 @@ export default class AddTodo extends React.Component {
     return (
       <div>
         <input type="text" ref="todoInput" />
-        <button onclick={this.addTodoHandle.bind(this)}>Add</button>
+        <button onClick={this.addTodoHandle.bind(this)}>Add</button>
       </div>
     )
   }

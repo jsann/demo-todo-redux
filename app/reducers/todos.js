@@ -1,3 +1,4 @@
+import _ from "underscore";
 import {VisibilityFilters} from "../actions/actions.js";
 
 /**
@@ -9,36 +10,36 @@ const initialState = {
   todos: []
 }
 
-export function todoApp (state = initialState, action) {
+export default function todoApp (state = initialState, action) {
   return {
     visibilityFilter: setVisibilityFilter(state.visibilityFilter, action),
     todos: todos(state.todos, action)
   }
 }
 
-function todos (state = [], action) {
+function todos (todos = [], action) {
   switch(action.type){
-    case ADD_TODO:
-      return [...state.todos, {
+    case "ADD_TODO":
+      return [...todos, {
         text: action.text,
         complete: false
       }]
-    case COMPLETE_TODO:
+    case "COMPLETE_TODO":
       return [
-        ...state.todos.slice(0, action.index),
-        Object.assign({}, state.todos[action.index], {
+        ...todos.slice(0, action.index),
+        _.extend({}, todos[action.index], {
           complete: true
         }),
-        ...state.todos.slice(action.index + 1)
+        ...todos.slice(action.index + 1)
       ]
     default:
-      return state;
+      return todos;
   }
 }
 
 function setVisibilityFilter (state = SHOW_ALL, action) {
   switch(action.type){
-    case SET_VISIBILITY_FILTER:
+    case "SET_VISIBILITY_FILTER":
       return action.filter
     default:
       return state;
