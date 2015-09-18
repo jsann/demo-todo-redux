@@ -22,13 +22,13 @@ function todos (todos = [], action) {
     case "ADD_TODO":
       return [...todos, {
         text: action.text,
-        complete: false
+        completed: false
       }]
     case "COMPLETE_TODO":
       return [
         ...todos.slice(0, action.index),
         _.extend({}, todos[action.index], {
-          complete: true
+          completed: true
         }),
         ...todos.slice(action.index + 1)
       ]

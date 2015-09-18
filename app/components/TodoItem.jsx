@@ -3,7 +3,7 @@ import React from "react";
 export default class TodoItem extends React.Component {
   render() {
     return (
-      <li onclick={this.props.todoItemClick} style={{textDecoration: this.props.completed ? "line-through" : "none", cursor: this.props.completed ? "default" : "pointer"}}>{this.props.text}</li>
+      <li onClick={this.props.onclick} style={{textDecoration: this.props.completed ? "line-through" : "none", cursor: this.props.completed ? "default" : "pointer"}}>{this.props.text}</li>
     )
   }
 }
