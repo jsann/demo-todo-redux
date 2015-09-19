@@ -1,8 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import {addTodo, completeTodo, setVisiblityFilter, VisibilityFilters} from "../actions/actions.js"
+import {addTodo, completeTodo, setVisibilityFilter, VisibilityFilters} from "../actions/actions.js"
 import AddTodo from "./AddTodo.jsx";
 import TodoList from "./TodoList.jsx";
+import Filter from "./Filter.jsx";
 
 class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class App extends React.Component {
       <div>
         <AddTodo addTodo={text => this.props.dispatch(addTodo(text))} />
         <TodoList todos={this.props.visibleTodos} todoItemClick={i => this.props.dispatch(completeTodo(i))} />
+        <Filter defaultFilter={this.props.visibilityFilter} onFilterChange={nextFilter => this.props.dispatch(setVisibilityFilter(nextFilter))} />
       </div>
     )
   }
@@ -28,9 +30,9 @@ function selectTodos(todos, filter) {
     case VisibilityFilters.SHOW_ALL:
       return todos;
     case VisibilityFilters.SHOW_COMPLETED:
-      return todos.filter(todos => todo.completed);
+      return todos.filter(todo => todo.completed);
     case VisibilityFilters.SHOW_ACTIVE:
-      return todos.filter(todos => !todo.completed);
+      return todos.filter(todo => !todo.completed);
   }
 }
 
