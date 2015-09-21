@@ -1,4 +1,3 @@
-import _ from "underscore";
 import {VisibilityFilters} from "../actions/actions.js";
 
 /**
@@ -27,7 +26,7 @@ function todos (todos = [], action) {
     case "COMPLETE_TODO":
       return [
         ...todos.slice(0, action.index),
-        _.extend({}, todos[action.index], {
+        Object.assign({}, todos[action.index], {
           completed: true
         }),
         ...todos.slice(action.index + 1)
